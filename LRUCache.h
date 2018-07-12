@@ -34,15 +34,17 @@ private:
 public:
     LinkedList() : _front(NULL), _rear(NULL) {};
     
-    void        
+    Node*        
     addFront(Tkey key, Tvalue value) {
         Node<Tkey, Tvalue> *node = new Node<Tkey, Tvalue>(key, value);
         if (this->_front == NULL && this->_rear == NULL){
             this->_front = this->_rear = NULL;
         } else {
-            node->n
+            node->_next = this->_front;
+            this->_front->prev = node;
+            this->_front = node;
         }
-        
+        return node;
     }
     void        addEear(Tkey key, Tvalue value);
     void        getNode(Node<Tkey, Tvalue>*);
