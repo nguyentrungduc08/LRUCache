@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=rlucache
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/rlucache
+CND_ARTIFACT_NAME_Debug=lrucache
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/lrucache
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=rlucache.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/rlucache.tar
+CND_PACKAGE_NAME_Debug=lrucache.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/lrucache.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=rlucache
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/rlucache
+CND_ARTIFACT_NAME_Release=lrucache
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/lrucache
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=rlucache.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/rlucache.tar
+CND_PACKAGE_NAME_Release=lrucache.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/lrucache.tar
 #
 # include compiler specific variables
 #
