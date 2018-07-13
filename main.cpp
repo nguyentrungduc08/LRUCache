@@ -12,6 +12,14 @@
 
 using namespace std;
 
+class Person {
+public:
+    std::string name;
+    int         age;
+};
+
+typedef Node<int, Person>* pNode;
+
 bool testDoublyLinkedList();
 bool testHashTable();
 
@@ -19,6 +27,8 @@ int main(int argc, char** argv) {
     
 //    std::cout << testDoublyLinkedList() << std::endl; 
     std::cout << testHashTable() << std::endl;
+    
+    LRUCache<int, Person > cache;
     return 0;
 }
 
@@ -37,6 +47,8 @@ bool testHashTable() {
     
     hashTable.remove(2);
     std::cout << hashTable.get(2,result) << " - " << result << std::endl;
+    
+    std::cout << "hash size: " << hashTable.size() << std::endl;
 } 
 
 bool testDoublyLinkedList() {

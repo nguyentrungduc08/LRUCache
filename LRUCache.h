@@ -1,6 +1,6 @@
 /* 
  * File:   RLUCache.h
- * Author: cpu10664-local
+ * Author: ducnt
  *
  * Created on July 10, 2018, 5:59 PM
  */
@@ -14,17 +14,25 @@
 #include "HashTable.h"
 
 
+template<class Tkey, class Tvalue>
 class LRUCache {
 public:
-    LRUCache();
-    LRUCache(const LRUCache& orig);
-    virtual ~LRUCache();
+    LRUCache() {
+        this->_cacheSize = HashTableSize;
+    }
+    
+    virtual ~LRUCache(){
+        
+    }
+    
+    void add(const Tkey&, const Tvalue&);
+    void get(const Tkey&, Tvalue&);
+    bool find(const Tkey &key);
     
 private:
-    int     _capacity;
-    
-    void            refer(const int& key);
-
+    LinkedList<Tkey, Tvalue>    _list;
+    HashTable<Tkey, Tvalue*>    _hashTable;
+    unsigned int                _cacheSize;
 };
 
 #endif	/* RLUCACHE_H */

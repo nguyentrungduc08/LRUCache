@@ -8,6 +8,9 @@
 #ifndef HASHTABLE_H
 #define	HASHTABLE_H
 
+#include "DoublyLinkedList.h"
+
+
 #define HashTableSize 1000000
 
 template<class Tkey, class Tvalue>
@@ -64,12 +67,14 @@ class HashTable {
 private:
     HashNode<Tkey, Tvalue>  **_hashTable;
     HF                      _hashFunction;
+    unsigned int            _size;
 public:
     /*
      construct zero initialized hash table of size
      */
     HashTable() {
         this->_hashTable = new HashNode<Tkey, Tvalue> *[HashTableSize]();
+        this->_size = 0;
     }
     
     /*
@@ -85,7 +90,8 @@ public:
             }
             this->_hashTable[i] = NULL;
         }
-        delete [] this->_hashTable;    
+        delete [] this->_hashTable;
+        this->_size = 0;
     }
     
     void 
@@ -106,6 +112,7 @@ public:
             } else {
                 prevBucket->setNext(bucket);
             }
+            ++this->_size; 
         } else { // overide hash value
             bucket->setValue(value);
         }
@@ -132,9 +139,17 @@ public:
                 prevBucket->setNext(bucket->getNext()); 
             }
             delete bucket;
+            --this->_size;
         } 
+        return;
     }
-    
+
+    /*
+     * get value (address value of key in linked list)
+     * @para: - key : key value to be searched for.
+     * @para: - value: refer parameter to store result value
+     * @return true if key value is found and value return in refer value parameter. false if not found.   
+     */
     bool 
     get(const Tkey &key, Tvalue &value) {
         unsigned int hashValue = this->_hashFunction(key);
@@ -149,11 +164,33 @@ public:
         }
         return false;
     }
+
+    /*
+     @return size of hash table 
+     */
+    unsigned int size(){
+        return this->_size;
+    }
+    
+    /*
+     * @para: key - key value to be searched for.
+     * @return true if key value is fonud. false if key is not found. 
+     */
+    bool
+    find(const Tkey& key) {
+        unsigned int hashValue = this->_hashFunction(key);
+        HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
+        
+        while (bucket != NULL) {
+            if (bucket->getKey() == key){
+                return true;
+            }
+            bucket = bucket->getNext();
+        }
+        return false;
+    }
      
 };
-
-
-
 
 #endif	/* HASHTABLE_H */
 

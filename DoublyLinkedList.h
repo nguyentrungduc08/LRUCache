@@ -25,13 +25,14 @@ class LinkedList {
 private: 
     Node<Tkey, Tvalue> *_front;
     Node<Tkey, Tvalue> *_back;
+    unsigned int        _size;
     
     bool isEmpty() {
         return this->_back == NULL;  
     }
     
 public:
-    LinkedList() : _front(NULL), _back(NULL) {};
+    LinkedList() : _front(NULL), _back(NULL), _size(0) {};
     
     /*
      * @todo remove all elements in list 
@@ -47,6 +48,7 @@ public:
                 delete node->_prev;
             }
         }
+        this->_size = 0;
     }
     
     /*
@@ -73,6 +75,7 @@ public:
             this->_front->_prev = node;
             this->_front = node;
         }
+        ++this->_size;
         return node;
     }
     
@@ -90,6 +93,7 @@ public:
             node->_prev = this->_back;
             this->_back = node;
         }
+        ++this->_size;
         return node;
     }
     
@@ -102,7 +106,7 @@ public:
         if (node == NULL){
             return;
         }
-        
+
         if (node == this->_front) {
             this->popFront();
             return;
@@ -115,6 +119,7 @@ public:
         node->_prev->_next = node->_next;
         node->_next->_prev = node->_prev;
         delete node;
+        --this->_size;
     }
     
     /*
@@ -136,8 +141,10 @@ public:
             delete this->_front;
             this->_front = this->_back = NULL;
         }
+        --this->_size;
     }
-    
+
+
     /*
      remove last element in list
      @return None   
@@ -157,8 +164,25 @@ public:
             delete this->_back;
             this->_front = this->_back = NULL;
         }
+        --this->_size;
     }
-    
+
+    /*
+     * @return pointer to the last of list
+     */
+    Node<Tkey, Tvalue>*
+    getBack() {
+        return this->_back;
+    }
+
+    /*
+     *
+     */
+    void 
+    getNode() {
+
+    }
+
     /*
      Find address of one element in list
      @para - key: key of node to find
@@ -185,6 +209,11 @@ public:
             temp = temp->_next;
         } 
         std::cout << std::endl;
+    }
+
+    unsigned int
+    size(){
+        return this->_size;
     }
 };
 
