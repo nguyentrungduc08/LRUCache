@@ -9,20 +9,35 @@
 #include <string>
 
 #include "LRUCache.h"
+
 using namespace std;
 
-/*
- * 
- */
-
 bool testDoublyLinkedList();
+bool testHashTable();
 
 int main(int argc, char** argv) {
     
-    std::cout << testDoublyLinkedList() << std::endl; 
-    
+//    std::cout << testDoublyLinkedList() << std::endl; 
+    std::cout << testHashTable() << std::endl;
     return 0;
 }
+
+bool testHashTable() {
+    HashTable<unsigned int, std::string> hashTable;
+    
+    hashTable.put(1,"asdf");
+    hashTable.put(2,"asdasdf");
+    hashTable.put(3,"asdffffff");
+    
+    std::string result;
+    
+    std::cout << hashTable.get(1,result) << " - " << result << std::endl;
+    std::cout << hashTable.get(9,result) << " - " << result << std::endl;
+    std::cout << hashTable.get(3,result) << " - " << result << std::endl;
+    
+    hashTable.remove(2);
+    std::cout << hashTable.get(2,result) << " - " << result << std::endl;
+} 
 
 bool testDoublyLinkedList() {
     LinkedList<int, std::string> list;
@@ -46,4 +61,6 @@ bool testDoublyLinkedList() {
     list.displayList(); 
     return true;
 }
+
+
 

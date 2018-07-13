@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>DoublyLinkedList.h</itemPath>
+      <itemPath>HashTable.h</itemPath>
       <itemPath>LRUCache.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -42,6 +44,10 @@
           <commandLine>-std=c++11</commandLine>
         </ccTool>
       </compileType>
+      <item path="DoublyLinkedList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HashTable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="LRUCache.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="LRUCache.h" ex="false" tool="3" flavor2="0">
@@ -70,6 +76,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="DoublyLinkedList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HashTable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="LRUCache.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="LRUCache.h" ex="false" tool="3" flavor2="0">
