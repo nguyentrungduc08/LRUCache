@@ -28,9 +28,12 @@ int main(int argc, char** argv) {
 //    std::cout << testDoublyLinkedList() << std::endl; 
     std::cout << testHashTable() << std::endl;
     
-    LRUCache<int, Person > cache;
+    LRUCache<int, Person > cache; // add objects to cache
+    
     return 0;
 }
+
+
 
 bool testHashTable() {
     HashTable<unsigned int, std::string> hashTable;

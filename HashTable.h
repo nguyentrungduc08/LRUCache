@@ -20,11 +20,19 @@ public:
         
     }
     
+    /*
+     * get key of bucket
+     * @return key value
+     */
     Tkey 
     getKey() {
         return this->_key;
     }
     
+    /*
+     * get value of bucket
+     * @return value of bucket
+     */
     Tvalue 
     getValue() {
         return this->_value;
