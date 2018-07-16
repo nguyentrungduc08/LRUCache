@@ -77,12 +77,16 @@ private:
     HashNode<Tkey, Tvalue>  **_hashTable;
     HF                      _hashFunction;
     unsigned int            _size;
+
 public:
     /*
      construct zero initialized hash table of size
      */
     HashTable() {
         this->_hashTable = new HashNode<Tkey, Tvalue> *[HashTableSize]();
+        for(int i = 0; i < HashTableSize; ++i){
+            this->_hashTable[i] = NULL;
+        }
         this->_size = 0;
     }
     
@@ -106,6 +110,7 @@ public:
     void 
     put(const Tkey &key, Tvalue value) {
         int hashValue = this->_hashFunction(key);
+        std::cout << "put log hashfunction: " << key << " - " << hashValue << std::endl;
         HashNode<Tkey, Tvalue> *prevBucket = NULL;
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
         
@@ -130,6 +135,7 @@ public:
     void 
     remove(const Tkey &key) {
         int hashValue = this->_hashFunction(key);
+        std::cout << "remove log hashfunction: " << key << " - " << hashValue << std::endl;
         HashNode<Tkey, Tvalue> *prevBucket = NULL;
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
         
@@ -140,7 +146,8 @@ public:
         
         if (bucket == NULL) {
             // key no exist
-            return;
+            std::cout << "key not exist" << std::endl;
+            return; 
         } else {
             if (prevBucket == NULL){
                 this->_hashTable[hashValue] = bucket->getNext();
@@ -189,7 +196,7 @@ public:
     find(const Tkey& key) {
         int hashValue = this->_hashFunction(key);
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
-        
+        std::cout << "find log hashfunction: " << key << " - " << hashValue << std::endl;
         while (bucket != NULL) {
             if (bucket->getKey() == key){
                 return true;

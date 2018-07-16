@@ -23,16 +23,19 @@ template<class Tkey, class Tvalue>
 void 
 LRUCache<Tkey, Tvalue>::add(const Tkey& key, Tvalue value) {
     if (!this->_hashTable.find(key)){ // neu key khong ton tai trong cache
+        std::cout << "cache miss" << std::endl;
         if (this->_list.size() == this->_cacheSize ) {// cache full
+            std::cout << "cache full" << std::endl;
             Node<Tkey, Tvalue>* last = this->_list.getBack();
-            this->_hashTable.remove(key);
+            this->_hashTable.remove(last->_key);
             this->_list.popBack();
         }    
     } else { // neu key da ton tai trong cache
+        std::cout << "cache hit" << std::endl;
         Node<Tkey, Tvalue>* ptrNode;
         this->_hashTable.get(key, ptrNode);
+        this->_hashTable.remove(ptrNode->_key);
         this->_list.removeNode(ptrNode);
-        this->_hashTable.remove(key);
     }
 
     this->_list.pushFront(key, value);
@@ -58,16 +61,16 @@ LRUCache<Tkey, Tvalue>::find(const Tkey& key) {
 template<class Tkey, class Tvalue>
 void 
 LRUCache<Tkey, Tvalue>::get(const Tkey& key, Tvalue &value) {
+    Node<Tkey, Tvalue>* addressData = NULL;
     if (this->find(key)){
-        Tvalue* addressData = NULL;
         this->_hashTable.get(key, addressData);
         if (addressData != NULL){
-            value = addressData->value;
+            value = addressData->_value;
+            this->refactoring(key);
         }
     } else {
-        value = NULL;
+        return;
     }
-
 }
 
 /*
@@ -77,4 +80,18 @@ template<class Tkey, class Tvalue>
 void 
 LRUCache<Tkey, Tvalue>::display() {
     this->_list.displayList();
+}
+
+template<class Tkey, class Tvalue>
+void 
+LRUCache<Tkey, Tvalue>::refactoring(const Tkey& key) {
+    Node<Tkey, Tvalue>* ptrNode;
+    Tvalue value;
+    this->_hashTable.get(key, ptrNode);
+    this->_hashTable.remove(ptrNode->_key);
+    value = ptrNode->_value;
+    this->_list.removeNode(ptrNode);
+
+    this->_list.pushFront(key, value);
+    this->_hashTable.put(key,this->_list.getFront());
 }

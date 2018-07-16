@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 //    std::cout << testHashTable() << std::endl;
     
     LRUCache<int, Person > cache; // add objects to cache
-    cache.setCacheSize(4);
+    cache.setCacheSize(5);
     
     Person a,b,c,d,e,f;
     a.name = "aaa";
@@ -54,13 +54,35 @@ int main(int argc, char** argv) {
     f.age = 6;
     
     cache.add(1,a);
+    cache.display();
+
     cache.add(2,b);
+    cache.display();
+
     cache.add(3,c);
-    cache.add(4,c);
-    cache.add(5,c);
-    cache.add(6,c);
+    cache.display();
+
+    cache.add(4,d);
+    cache.display();
+
+    cache.add(5,e);
+    cache.display();
+
+    cache.add(6,f);
+    cache.display();
+
     cache.add(1,a);
     cache.display();
+    
+    cache.add(5,e);
+    cache.display();
+
+    Person tmp;
+    cache.get(6, tmp);
+    cache.display();
+    std::cout << "info: " << tmp.age << " - " << tmp.name << std::endl;
+    
+    
     return 0;
 }
 

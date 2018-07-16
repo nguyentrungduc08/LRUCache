@@ -28,6 +28,7 @@ public:
     void setCacheSize(const int &Zsize);
     void add(const Tkey&, Tvalue);
     void get(const Tkey&, Tvalue&);
+    void refactoring(const Tkey&);
     bool find(const Tkey &key);
 
     void display();

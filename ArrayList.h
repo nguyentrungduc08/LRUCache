@@ -16,13 +16,14 @@
 
 template<class T>
 class ArrayList {
+private:
+    T       *_arrayList;
+    int     _Zsize;
 public:
     ArrayList() {
-
     }
     
     ~ArrayList(){
-
     }
 }
 
