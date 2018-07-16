@@ -12,6 +12,7 @@
 
 #include "DoublyLinkedList.h"
 #include "HashTable.h"
+#include "ArrayList.h"
 
 
 template<class Tkey, class Tvalue>

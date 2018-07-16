@@ -10,6 +10,7 @@
 
 #include "LRUCache.h"
 #include "LRUCache.cpp"
+#include "ArrayList.h"
 
 using namespace std;
 
@@ -30,12 +31,29 @@ typedef Node<int, Person>* pNode;
 
 bool testDoublyLinkedList();
 bool testHashTable();
+bool testLRUCache();
+bool testArrayList();
 
 int main(int argc, char** argv) {
     
 //    std::cout << testDoublyLinkedList() << std::endl; 
 //    std::cout << testHashTable() << std::endl;
-    
+    // std::cout << testLRUCache() << std::endl;
+    std::cout << testArrayList() << std::endl;
+
+    return 0;
+}
+
+bool testArrayList() {
+    ArrayList<int> arr(1234);
+    arr[1] = 1;
+    arr[2] = 2;
+    arr[6] = 9;
+    for(int i = 0 ;i < 10; ++i)
+        std::cout << arr[i] << std::endl;
+}
+
+bool testLRUCache() {
     LRUCache<int, Person > cache; // add objects to cache
     cache.setCacheSize(5);
     
@@ -82,10 +100,8 @@ int main(int argc, char** argv) {
     cache.display();
     std::cout << "info: " << tmp.age << " - " << tmp.name << std::endl;
     
-    
-    return 0;
+    return true;
 }
-
 
 
 bool testHashTable() {

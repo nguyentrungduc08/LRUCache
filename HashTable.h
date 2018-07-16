@@ -9,6 +9,7 @@
 #define	HASHTABLE_H
 
 #include "DoublyLinkedList.h"
+#include "ArrayList.h"
 
 
 #define HashTableSize 1000000
