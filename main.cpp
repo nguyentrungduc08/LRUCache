@@ -9,6 +9,7 @@
 #include <string>
 
 #include "LRUCache.h"
+#include "LRUCache.cpp"
 
 using namespace std;
 
@@ -16,7 +17,14 @@ class Person {
 public:
     std::string name;
     int         age;
+    friend ostream& operator<<(ostream& os, const Person& dt);  
 };
+
+ostream& operator<<(ostream& os, const Person& dt)  
+{  
+    os << dt.name << " - " << dt.age;  
+    return os;  
+}  
 
 typedef Node<int, Person>* pNode;
 
@@ -26,10 +34,33 @@ bool testHashTable();
 int main(int argc, char** argv) {
     
 //    std::cout << testDoublyLinkedList() << std::endl; 
-    std::cout << testHashTable() << std::endl;
+//    std::cout << testHashTable() << std::endl;
     
     LRUCache<int, Person > cache; // add objects to cache
+    cache.setCacheSize(4);
     
+    Person a,b,c,d,e,f;
+    a.name = "aaa";
+    a.age = 1;
+    b.name = "bbb";
+    b.age = 2;
+    c.name = "ccc";
+    c.age = 3;
+    d.name = "ddd";
+    d.age = 4;
+    e.name = "eee";
+    e.age = 5;
+    f.name = "fff";
+    f.age = 6;
+    
+    cache.add(1,a);
+    cache.add(2,b);
+    cache.add(3,c);
+    cache.add(4,c);
+    cache.add(5,c);
+    cache.add(6,c);
+    cache.add(1,a);
+    cache.display();
     return 0;
 }
 

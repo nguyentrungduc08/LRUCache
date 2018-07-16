@@ -25,14 +25,17 @@ public:
         
     }
     
-    void add(const Tkey&, const Tvalue&);
+    void setCacheSize(const int &Zsize);
+    void add(const Tkey&, Tvalue);
     void get(const Tkey&, Tvalue&);
     bool find(const Tkey &key);
+
+    void display();
     
 private:
-    LinkedList<Tkey, Tvalue>    _list;
-    HashTable<Tkey, Tvalue*>    _hashTable;
-    unsigned int                _cacheSize;
+    LinkedList<Tkey, Tvalue>                _list;
+    HashTable<Tkey, Node<Tkey,Tvalue>*>     _hashTable;
+    unsigned int                            _cacheSize;
 };
 
 #endif	/* RLUCACHE_H */

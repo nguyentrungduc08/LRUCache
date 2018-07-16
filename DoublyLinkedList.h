@@ -143,6 +143,11 @@ public:
         }
         --this->_size;
     }
+    
+    Node<Tkey, Tvalue>*
+    getFront() {
+        return this->_front;
+    }
 
 
     /*

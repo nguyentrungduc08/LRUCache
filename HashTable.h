@@ -66,7 +66,8 @@ private:
 template <class Tkey>
 struct KeyHash {
     unsigned int operator() (const Tkey& key) const {
-        return reinterpret_cast<unsigned int>(key) % HashTableSize;
+//        return reinterpret_cast<int> (key) % HashTableSize;
+        return (key) % HashTableSize;
     }
 };
 
@@ -103,8 +104,8 @@ public:
     }
     
     void 
-    put(const Tkey &key, const Tvalue &value) {
-        unsigned int hashValue = this->_hashFunction(key);
+    put(const Tkey &key, Tvalue value) {
+        int hashValue = this->_hashFunction(key);
         HashNode<Tkey, Tvalue> *prevBucket = NULL;
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
         
@@ -128,7 +129,7 @@ public:
     
     void 
     remove(const Tkey &key) {
-        unsigned int hashValue = this->_hashFunction(key);
+        int hashValue = this->_hashFunction(key);
         HashNode<Tkey, Tvalue> *prevBucket = NULL;
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
         
@@ -160,7 +161,7 @@ public:
      */
     bool 
     get(const Tkey &key, Tvalue &value) {
-        unsigned int hashValue = this->_hashFunction(key);
+        int hashValue = this->_hashFunction(key);
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];   
         
         while (bucket != NULL) {
@@ -186,7 +187,7 @@ public:
      */
     bool
     find(const Tkey& key) {
-        unsigned int hashValue = this->_hashFunction(key);
+        int hashValue = this->_hashFunction(key);
         HashNode<Tkey, Tvalue> *bucket = this->_hashTable[hashValue];
         
         while (bucket != NULL) {
