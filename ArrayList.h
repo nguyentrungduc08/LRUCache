@@ -52,6 +52,7 @@ public:
     void resize(std::size_t new_size);
 
     /* element access*/
+    /* @node: handle invalid index*/
     T& operator[](int index){
         return this->m_buffer[index];
     }
@@ -78,7 +79,7 @@ ArrayList<T>::ArrayList(){
 template<class T>
 ArrayList<T>::ArrayList(unsigned int size) {
     this->m_size = size;
-    this->m_Log = ceil(log((double) size) / log(2.0));
+    this->m_Log = ceil(log((double) size) / log(2.0)); // caculate newsize >= size
     this->m_capacity = 1 << this->m_Log;
     this->m_buffer = new T[this->m_capacity];
     this->m_capacity_inc = 1;
@@ -127,12 +128,14 @@ ArrayList<T>::push_back(const T &t){
     this->m_buffer[this->m_size++] = t;
 }
 
+/* increase size of arraylist when full capacity*/
 template<class T>
 unsigned int 
 ArrayList<T>::Log(){ 
     return this->m_Log;
 }
 
+/* realocate new size of array and copy data from old memory*/
 template<class T>
 void 
 ArrayList<T>::reserve(unsigned int capacity) {
@@ -146,6 +149,7 @@ ArrayList<T>::reserve(unsigned int capacity) {
     this->m_buffer = newBuffer;
 }
 
+/* overload operator = for assign 2 arraylist*/
 template<class T>
 ArrayList<T>& ArrayList<T>::operator = (const ArrayList<T> & arr) {
     delete[] this->m_buffer;

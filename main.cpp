@@ -45,11 +45,13 @@ int main(int argc, char** argv) {
 }
 
 bool testArrayList() {
-    ArrayList<int> arr(1234);
+    ArrayList<int> arr(18);
+    std::cout << ceil(123.2) << std::endl;
+    std::cout << arr.Log() << " - " << arr.capacity() << std::endl;
     arr[1] = 1;
     arr[2] = 2;
     arr[6] = 9;
-    for(int i = 0 ;i < 10; ++i)
+    for(int i = 0 ;i < 1; ++i)
         std::cout << arr[i] << std::endl;
 }
 
